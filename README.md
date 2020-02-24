@@ -1,1 +1,5 @@
 # algorithm
+dynamicProgramming 动态规划算法
+greedyAlgorithm 贪心算法
+backtrackingAlgorithm 回溯算法
+DivideConquerAlgorithm 分支限界法 
