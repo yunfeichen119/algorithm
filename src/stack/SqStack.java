@@ -13,28 +13,37 @@ public class SqStack<T> {
     @SuppressWarnings("unchecked")
     public SqStack(Class<T> type){
         this.array = (T[]) Array.newInstance(type, MAX_SIZE);
-        this.length = 0;
+        this.length = -1;
     }
 
     public void push(T data){
         if(length == MAX_SIZE -1){
             throw  new RuntimeException("out of range");
         }
-        array[length] = data;
         length++;
+        array[length] = data;
+
     }
 
 
     public T pop(){
-        if(length == 0){
+        if(length == -1){
             throw  new RuntimeException("empty stack");
         }
         length--;
+        return array[length+1];
+
+    }
+
+    public T top(){
+        if(length == -1){
+            throw  new RuntimeException("empty stack");
+        }
         return array[length];
     }
 
     public Boolean isEmpty(){
-        return length == 0;
+        return length == -1;
     }
 
     public Boolean isFull(){
