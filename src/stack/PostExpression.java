@@ -82,6 +82,40 @@ public class PostExpression {
 
     }
 
+    public static Integer execute(String postExp){
+        SqStack<Integer> numberStack  = new SqStack<>(Integer.class);
+        int i = 0;
+        while (i < postExp.length()){
+            if(Character.isDigit(postExp.charAt(i))){
+                StringBuilder sb = new StringBuilder();
+                while (i < postExp.length() && Character.isDigit(postExp.charAt(i))){
+                    char ch = postExp.charAt(i);
+                    sb.append(ch);
+                    i++;
+                }
+                Integer param = Integer.parseInt(sb.toString());
+                numberStack.push(param);
+            }else if(postExp.charAt(i) == '#'){
+                i++;
+                continue;
+            }else{
+                Integer top1 = numberStack.pop();
+                Integer top2 = numberStack.pop();
+                if(postExp.charAt(i) == '+'){
+                    numberStack.push(top2 + top1);
+                }else if(postExp.charAt(i) == '-'){
+                    numberStack.push(top2 - top1);
+                }else if(postExp.charAt(i) == '*'){
+                    numberStack.push(top2 * top1);
+                }else if(postExp.charAt(i) == '/'){
+                    numberStack.push(top2 / top1);
+                }
+                i++;
+            }
+        }
+        return numberStack.pop();
+    }
+
 
     public static void main(String[] args){
 
@@ -89,14 +123,20 @@ public class PostExpression {
             String mathExp1 = "11+12*13";
             String postExp1 = transfer(mathExp1);
             System.out.println(postExp1);
+            Integer sum1 = execute(postExp1);
+            System.out.println(sum1);
 
             String mathExp2 = "11+(12+13+14*15)-16";
             String postExp2 = transfer(mathExp2);
             System.out.println(postExp2);
+            Integer sum2 = execute(postExp2);
+            System.out.println(sum2);
 
             String mathExp3 = "11+12+13-14+15-16*17";
             String postExp3 = transfer(mathExp3);
             System.out.println(postExp3);
+            Integer sum3 = execute(postExp3);
+            System.out.println(sum3);
         }catch (Exception e){
             e.printStackTrace();
         }
