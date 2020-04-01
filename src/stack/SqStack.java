@@ -30,8 +30,10 @@ public class SqStack<T> {
         if(length == -1){
             throw  new RuntimeException("empty stack");
         }
+        T data = array[length];
+        array[length] = null;
         length--;
-        return array[length+1];
+        return data;
 
     }
 

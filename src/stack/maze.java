@@ -4,7 +4,7 @@ public class maze {
 
     public static void path(int[][] maze, int x1, int y1, int x2, int y2){
         SqStack<Move> stack = new SqStack<Move>(Move.class);
-        int x,y,direction;
+        int x =0 ,y =0 ,direction = -1;
         boolean find;
         stack.push(new Move(x1, y1, -1));
         maze[x1][y1] = -1;
@@ -23,27 +23,27 @@ public class maze {
                 direction++;
                 switch (direction){
                     case 0:
-                        x = top.getX();
-                        y = top.getY() - 1;
+                        x = top.getX()-1;
+                        y = top.getY();
                         direction = 0;
                         break;
                     case 1:
-                        x = top.getX() + 1;
-                        y = top.getY();
+                        x = top.getX();
+                        y = top.getY()+1;
                         direction = 1;
                         break;
                     case 2:
-                        x = top.getX();
-                        y = top.getY() + 1;
+                        x = top.getX()+1;
+                        y = top.getY();
                         direction = 2;
                         break;
                     default:
-                        x = top.getX() - 1;
-                        y = top.getY();
+                        x = top.getX();
+                        y = top.getY()-1;
                         direction = 3;
                         break;
                 }
-                if(maze[x][y] == 1){
+                if(maze[x][y] == 0){
                     find = true;
                 }
             }
