@@ -4,24 +4,57 @@ public class maze {
 
     public static void path(int[][] maze, int x1, int y1, int x2, int y2){
         SqStack<Move> stack = new SqStack<Move>(Move.class);
-        int nx = x1, ny=y1;
-        maze[nx][ny] = -1;
-        Move move = new Move(nx, ny, 0);
-        stack.push(move);
-        nx = nx -1;
-        while(!(nx == x2 && ny == y2)){
-            if(maze[nx][ny] != 0){
-                Move top = stack.pop();
-                if(top.getDirection() < 3){
-                    top.setDirection(top.getDirection()+1);
-                }else{
-
+        int x,y,direction;
+        boolean find;
+        stack.push(new Move(x1, y1, -1));
+        maze[x1][y1] = -1;
+        while (!stack.isEmpty()){
+            Move top = stack.top();
+            if(top.getX() == x2 && top.getY() == y2){
+                for(int k = 0; k < stack.len(); k++){
+                    Move move = stack.index(k);
+                    System.out.printf("move x:%d, y:%d, direction:%d\n", move.getX(), move.getY(), move.getDirection());
                 }
+                return;
+            }
+            find = false;
+            direction = top.getDirection();
+            while(direction < 3 && !find){
+                direction++;
+                switch (direction){
+                    case 0:
+                        x = top.getX();
+                        y = top.getY() - 1;
+                        direction = 0;
+                        break;
+                    case 1:
+                        x = top.getX() + 1;
+                        y = top.getY();
+                        direction = 1;
+                        break;
+                    case 2:
+                        x = top.getX();
+                        y = top.getY() + 1;
+                        direction = 2;
+                        break;
+                    default:
+                        x = top.getX() - 1;
+                        y = top.getY();
+                        direction = 3;
+                        break;
+                }
+                if(maze[x][y] == 1){
+                    find = true;
+                }
+            }
+
+            if(find){
+                top.setDirection(direction);
+                maze[x][y] = -1;
+                stack.push(new Move(x, y, -1));
             }else{
-                Move step = new Move(nx, ny, 0);
-                stack.push(move);
-                maze[nx][ny] = -1;
-                nx = nx -1;
+                maze[top.getX()][top.getY()] = 1;
+                stack.pop();
             }
         }
     }
@@ -41,8 +74,9 @@ public class maze {
                 {1, 1, 0, 0, 0, 0, 0, 0, 0, 1},
                 {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
         };
+        path(maze, 1, 1,2,4);
 
-        path(maze, 1, 1,8,8);
+        //path(maze, 1, 1,8,8);
 
     }
 

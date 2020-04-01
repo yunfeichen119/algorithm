@@ -50,6 +50,17 @@ public class SqStack<T> {
         return length == MAX_SIZE -1;
     }
 
+    public Integer len() {
+        return length+1;
+    }
+
+    public T index(int i){
+        if(i > length){
+            throw  new RuntimeException("invalid index");
+        }
+        return array[i];
+    }
+
     public static void main(String[] args){
 
         SqStack<Integer> stack = new SqStack<Integer>(Integer.class);
