@@ -12,13 +12,16 @@ public class SolutionOffer68 {
 
 
   public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-
+    return null;
   }
 
 
   public boolean contain(TreeNode root, TreeNode p, TreeNode q){
-    boolean containP = false;
-    boolean containQ = false;
+//    boolean containP = false;
+//    boolean containQ = false;
+
+
+    return true;
 
 
 

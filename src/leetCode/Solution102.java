@@ -47,13 +47,13 @@ public class Solution102 {
       for (TreeNode node : cacheList) {
         levelResult.add(node.val);
 
-        if(null != node.left){
-          queue.add(node.left);
-        }
-
-        if(null != node.right){
-          queue.add(node.right);
-        }
+//        if(null != node.left){
+//          queue.add(node.left);
+//        }
+//
+//        if(null != node.right){
+//          queue.add(node.right);
+//        }
 
       }
 
