@@ -5,24 +5,21 @@ public class BubbleSort {
 
   public static void sort(int[] arr){
 
-    boolean swap = false;
+   for(int i = 0; i < arr.length -1; i++){
+     boolean swap = false;
+     for(int j = 0; j < arr.length-i-1; j++){
+       if(arr[j] > arr[j+1]){
+         int tmp = arr[j];
+         arr[j] = arr[j+1];
+         arr[j+1] = tmp;
+         swap = true;
+       }
+     }
 
-    for(int i = 0; i < arr.length -1; i++){
-      for(int j = i+1; j < arr.length; j++){
-        if(arr[i] > arr[j]){
-          int tmp = arr[i];
-          arr[i] = arr[j];
-          arr[j] = tmp;
-
-          swap = true;
-        }
-      }
-
-
-      if(!swap){
-
-      }
-    }
+     if(!swap){
+       return;
+     }
+   }
 
   }
 
